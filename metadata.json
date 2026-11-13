@@ -1,0 +1,6 @@
+{
+  "name": "Sabor da Hora — Lanches, Pastéis & Sorvetes",
+  "description": "Landing page profissional e personalizável para lanchonetes: lanches artesanais, pastéis crocantes e sorvetes geladinhos.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

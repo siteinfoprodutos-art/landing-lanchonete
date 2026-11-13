@@ -1,0 +1,186 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Anton", Impact, sans-serif;
+  --font-sans: "Poppins", system-ui, -apple-system, sans-serif;
+  --font-hand: "Caveat", cursive;
+  --color-cream: #FFF4E6;
+  --color-yellow-soft: #FFE9B0;
+  --color-petrol: #1C2B39;
+  --color-orange: #F7941D;
+  --color-orange-hover: #E8740C;
+  --color-yellow: #FFC93C;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+    background-color: #FFF4E6;
+    color: #1C2B39;
+  }
+
+  /* Ensure no ancestor of the sticky hero has overflow:hidden, transform, or filter */
+  body {
+    overflow-x: clip;
+    background-color: #FFF4E6;
+    transition: background-color 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+}
+
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: 0.02em;
+}
+
+.font-hand {
+  font-family: var(--font-hand);
+}
+
+/* Smooth overlapping upper corners between sections */
+.section-overlap {
+  margin-top: -40px;
+  border-top-left-radius: 28px;
+  border-top-right-radius: 28px;
+}
+
+@media (min-width: 768px) {
+  .section-overlap {
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+  }
+}
+
+/* Intersecting vertical + horizontal gradient mask for seamless hero canvas edges */
+.hero-canvas-mask {
+  -webkit-mask-image:
+    linear-gradient(to bottom, transparent 0%, #000 12%, #000 88%, transparent 100%),
+    linear-gradient(to right, transparent 0%, #000 6%, #000 94%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    linear-gradient(to bottom, transparent 0%, #000 12%, #000 88%, transparent 100%),
+    linear-gradient(to right, transparent 0%, #000 6%, #000 94%, transparent 100%);
+  mask-composite: intersect;
+}
+
+.hero-canvas-mask-mobile {
+  -webkit-mask-image:
+    linear-gradient(to bottom, transparent 0%, #000 6%, #000 94%, transparent 100%),
+    linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    linear-gradient(to bottom, transparent 0%, #000 6%, #000 94%, transparent 100%),
+    linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%);
+  mask-composite: intersect;
+}
+
+.hero-mobile-panel-bg {
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 244, 230, 0) 0%,
+    rgba(255, 244, 230, 0.78) 26%,
+    rgba(255, 244, 230, 0.94) 100%
+  );
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 22%, #000 100%);
+  mask-image: linear-gradient(to bottom, transparent 0%, #000 22%, #000 100%);
+}
+
+@keyframes hero-stage-in {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+    filter: blur(4px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+.animate-hero-stage-in {
+  animation: hero-stage-in 0.34s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Subtle warm film grain overlay */
+.bg-warm-grain {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+}
+
+/* Layered soft shadows matching warm cream & petrol palette */
+.shadow-warm {
+  box-shadow:
+    0 4px 12px rgba(28, 43, 57, 0.06),
+    0 14px 34px rgba(247, 148, 29, 0.1);
+}
+
+.shadow-warm-dark {
+  box-shadow:
+    0 6px 16px rgba(0, 0, 0, 0.22),
+    0 18px 40px rgba(0, 0, 0, 0.26);
+}
+
+.shadow-warm-lg {
+  box-shadow:
+    0 8px 20px rgba(28, 43, 57, 0.08),
+    0 24px 48px rgba(28, 43, 57, 0.14);
+}
+
+@keyframes wa-pulse-ring {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.7;
+  }
+  70% {
+    transform: scale(1.48);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.48);
+    opacity: 0;
+  }
+}
+
+@keyframes wa-blink-soft {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.84;
+    transform: scale(1.05);
+  }
+}
+
+.animate-wa-ring {
+  animation: wa-pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+}
+
+.animate-wa-ring-delay {
+  animation: wa-pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) 0.7s infinite;
+}
+
+.animate-wa-blink {
+  animation: wa-blink-soft 2s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  body {
+    transition: none !important;
+  }
+  .section-overlap {
+    margin-top: 0 !important;
+    border-top-left-radius: 0 !important;
+    border-top-right-radius: 0 !important;
+  }
+  .animate-wa-ring,
+  .animate-wa-ring-delay,
+  .animate-wa-blink,
+  .animate-hero-stage-in {
+    animation: none !important;
+  }
+}
