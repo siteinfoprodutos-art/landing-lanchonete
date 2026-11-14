@@ -16,6 +16,20 @@ export function FloatingActions({
   onCloseOrderModal,
 }: FloatingActionsProps) {
   const [showBubble, setShowBubble] = useState(false);
+  const [isShortViewport, setIsShortViewport] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return window.matchMedia('(max-height: 699px)').matches;
+    }
+    return false;
+  });
+
+  useEffect(() => {
+    const mql = window.matchMedia('(max-height: 699px)');
+    const updateHeight = () => setIsShortViewport(mql.matches);
+    updateHeight();
+    mql.addEventListener('change', updateHeight);
+    return () => mql.removeEventListener('change', updateHeight);
+  }, []);
 
   // Show "Fale com a gente" speech bubble after 4 seconds
   useEffect(() => {
@@ -46,13 +60,13 @@ export function FloatingActions({
     <>
       {/* Floating Green WhatsApp Button with pulse rings, 2s blink, and 4s bubble */}
       <div className="fixed bottom-[68px] md:bottom-6 right-4 md:right-6 z-40 flex items-center gap-3">
-        {showBubble && (
-          <div className="relative bg-white text-[#1C2B39] text-xs sm:text-sm font-semibold px-3.5 py-2 rounded-2xl shadow-warm-lg border border-[#1C2B39]/10 flex items-center gap-2">
+        {showBubble && !isShortViewport && (
+          <div className="relative bg-[#1C2B39] text-[#FFF4E6] text-xs sm:text-sm font-semibold px-3.5 py-2 rounded-2xl shadow-[0_10px_28px_rgba(28,43,57,0.35)] border border-[#F7941D]/45 flex items-center gap-2">
             <a
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="whitespace-nowrap hover:text-[#F7941D] transition-colors"
+              className="whitespace-nowrap hover:text-[#FFC93C] transition-colors"
             >
               Fale com a gente
             </a>
@@ -60,7 +74,7 @@ export function FloatingActions({
               type="button"
               onClick={() => setShowBubble(false)}
               aria-label="Fechar aviso"
-              className="text-[#1C2B39]/45 hover:text-[#1C2B39] cursor-pointer"
+              className="text-[#FFF4E6]/65 hover:text-[#FFC93C] cursor-pointer"
             >
               <X className="w-3.5 h-3.5" />
             </button>
@@ -72,7 +86,7 @@ export function FloatingActions({
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Falar no WhatsApp"
-          className="relative w-14 h-14 rounded-full bg-[#25D366] text-white flex items-center justify-center shadow-lg hover:brightness-105 transition-transform active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1C2B39]"
+          className="relative w-14 h-14 rounded-full bg-[#25D366] text-white border-2 border-white flex items-center justify-center shadow-[0_8px_24px_rgba(28,43,57,0.35)] hover:brightness-105 transition-transform active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1C2B39]"
         >
           <span
             aria-hidden="true"

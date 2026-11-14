@@ -14,7 +14,6 @@ export interface SiteConfig {
 
 export interface HeroSequenceConfig {
   dir: string;
-  total: number;
   mode: 'fit-box' | 'fit-tall';
 }
 

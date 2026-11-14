@@ -30,8 +30,8 @@ export const SITE: SiteConfig = {
 };
 
 export const CFG: HeroCfg = {
-  desktop: { dir: '/frames/', total: 95, mode: 'fit-box' },
-  mobile: { dir: '/frames_mobile/', total: 79, mode: 'fit-tall' },
+  desktop: { dir: '/frames/', mode: 'fit-box' },
+  mobile: { dir: '/frames_mobile/', mode: 'fit-tall' },
 };
 // ============================================================================
 

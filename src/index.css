@@ -50,15 +50,15 @@
   }
 }
 
-/* Intersecting vertical + horizontal gradient mask for seamless hero canvas edges */
+/* Intersecting horizontal + vertical gradient mask for seamless desktop hero canvas edges */
 .hero-canvas-mask {
   -webkit-mask-image:
-    linear-gradient(to bottom, transparent 0%, #000 12%, #000 88%, transparent 100%),
-    linear-gradient(to right, transparent 0%, #000 6%, #000 94%, transparent 100%);
+    linear-gradient(to right, transparent 0%, #000 5%, #000 95%, transparent 100%),
+    linear-gradient(to bottom, transparent 0%, #000 8%, #000 92%, transparent 100%);
   -webkit-mask-composite: source-in;
   mask-image:
-    linear-gradient(to bottom, transparent 0%, #000 12%, #000 88%, transparent 100%),
-    linear-gradient(to right, transparent 0%, #000 6%, #000 94%, transparent 100%);
+    linear-gradient(to right, transparent 0%, #000 5%, #000 95%, transparent 100%),
+    linear-gradient(to bottom, transparent 0%, #000 8%, #000 92%, transparent 100%);
   mask-composite: intersect;
 }
 

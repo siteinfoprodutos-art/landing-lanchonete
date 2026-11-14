@@ -57,20 +57,20 @@ export function Header({
 
   return (
     <header
-      className={`fixed top-0 inset-x-0 z-40 transition-colors duration-200 ${
-        scrolled
-          ? 'bg-[#FFF4E6]/92 backdrop-blur-md border-b border-[#1C2B39]/10 shadow-sm'
-          : 'bg-[#FFF4E6]/75 backdrop-blur-sm'
-      }`}
+      className="fixed top-0 inset-x-0 z-40 bg-[#1C2B39] border-b-[3px] border-[#F7941D] shadow-[0_6px_20px_rgba(28,43,57,0.25)] transition-all duration-200"
     >
-      <div className="mx-auto max-w-[1200px] px-5 sm:px-10 lg:px-16 h-14 md:h-[72px] flex items-center justify-between gap-8">
+      <div
+        className={`mx-auto max-w-[1200px] px-5 sm:px-10 lg:px-16 flex items-center justify-between gap-8 transition-[height] duration-200 ${
+          scrolled ? 'h-[57px]' : 'h-[61px] md:h-[69px]'
+        }`}
+      >
         <button
           type="button"
           onClick={() => onNavigateHome('inicio')}
           aria-label={`${site.nome} — Ir para o início`}
-          className="focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#F7941D] rounded-lg cursor-pointer text-left"
+          className="focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FFC93C] rounded-lg cursor-pointer text-left"
         >
-          <BrandLogo site={site} size="sm" />
+          <BrandLogo site={site} size="sm" variant="dark" />
         </button>
 
         <nav className="hidden md:flex items-center gap-7" aria-label="Navegação principal">
@@ -79,10 +79,10 @@ export function Header({
               key={item.label}
               type="button"
               onClick={item.action}
-              className={`text-sm font-medium transition-colors whitespace-nowrap shrink-0 relative py-1 cursor-pointer after:content-[''] after:absolute after:bottom-0 after:left-0 after:h-0.5 after:bg-[#F7941D] after:transition-all after:duration-200 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#F7941D] ${
+              className={`text-sm font-medium transition-colors whitespace-nowrap shrink-0 relative py-1 cursor-pointer after:content-[''] after:absolute after:bottom-0 after:left-0 after:h-0.5 after:transition-all after:duration-200 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FFC93C] ${
                 item.active
-                  ? 'text-[#F7941D] after:w-full'
-                  : 'text-[#1C2B39] hover:text-[#F7941D] after:w-0 hover:after:w-full'
+                  ? 'text-[#F7941D] after:w-full after:bg-[#F7941D]'
+                  : 'text-white hover:text-[#FFC93C] after:w-0 hover:after:w-full after:bg-[#FFC93C]'
               }`}
             >
               {item.label}
@@ -96,7 +96,7 @@ export function Header({
               href={site.linkPedidos}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center px-5 py-2.5 rounded-full bg-[#F7941D] hover:bg-[#E8740C] text-white text-xs md:text-sm font-bold tracking-wider uppercase shadow-sm transition-all duration-150 active:scale-[0.98] whitespace-nowrap shrink-0 min-h-[40px] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1C2B39]"
+              className="inline-flex items-center justify-center px-5 py-2 rounded-[999px] bg-[#F7941D] hover:brightness-110 hover:shadow-[0_0_16px_rgba(247,148,29,0.55)] text-[#1C2B39] text-xs md:text-sm font-extrabold tracking-wider uppercase shadow-sm transition-all duration-150 active:scale-[0.98] whitespace-nowrap shrink-0 min-h-[38px] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#FFC93C]"
             >
               PEDIR
             </a>
@@ -104,7 +104,7 @@ export function Header({
             <button
               type="button"
               onClick={onOrderClick}
-              className="inline-flex items-center justify-center px-5 py-2.5 rounded-full bg-[#F7941D] hover:bg-[#E8740C] text-white text-xs md:text-sm font-bold tracking-wider uppercase shadow-sm transition-all duration-150 active:scale-[0.98] whitespace-nowrap shrink-0 min-h-[40px] cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1C2B39]"
+              className="inline-flex items-center justify-center px-5 py-2 rounded-[999px] bg-[#F7941D] hover:brightness-110 hover:shadow-[0_0_16px_rgba(247,148,29,0.55)] text-[#1C2B39] text-xs md:text-sm font-extrabold tracking-wider uppercase shadow-sm transition-all duration-150 active:scale-[0.98] whitespace-nowrap shrink-0 min-h-[38px] cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#FFC93C]"
             >
               PEDIR
             </button>
@@ -115,7 +115,7 @@ export function Header({
             onClick={() => setMobileOpen((prev) => !prev)}
             aria-label={mobileOpen ? 'Fechar menu' : 'Abrir menu'}
             aria-expanded={mobileOpen}
-            className="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-xl text-[#1C2B39] hover:bg-[#1C2B39]/5 transition-colors cursor-pointer focus-visible:outline-2 focus-visible:outline-[#F7941D]"
+            className="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-xl text-white hover:bg-white/10 transition-colors cursor-pointer focus-visible:outline-2 focus-visible:outline-[#FFC93C]"
           >
             {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
@@ -123,7 +123,7 @@ export function Header({
       </div>
 
       {mobileOpen && (
-        <div className="md:hidden bg-[#FFF4E6] border-t border-[#1C2B39]/10 px-5 py-4 shadow-warm">
+        <div className="md:hidden bg-[#1C2B39] border-t border-white/10 px-5 py-4 shadow-[0_12px_28px_rgba(28,43,57,0.35)]">
           <nav className="flex flex-col gap-1" aria-label="Menu mobile">
             {navItems.map((item) => (
               <button
@@ -135,8 +135,8 @@ export function Header({
                 }}
                 className={`py-3 px-3 rounded-xl text-base font-medium text-left transition-colors cursor-pointer ${
                   item.active
-                    ? 'bg-[#F7941D]/15 text-[#F7941D]'
-                    : 'text-[#1C2B39] hover:bg-[#F7941D]/10 hover:text-[#F7941D]'
+                    ? 'bg-[#F7941D]/20 text-[#F7941D]'
+                    : 'text-white hover:bg-white/10 hover:text-[#FFC93C]'
                 }`}
               >
                 {item.label}
